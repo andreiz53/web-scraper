@@ -2,9 +2,14 @@ package pages
 
 import (
 	"github.com/andreiz53/web-scraper/types"
+	"fmt"
 )
 
 func UserSettings(ctx context.Context) *types.UserContext {
+	fmt.Println("INSIDE USER SETTINGS", ctx.Value(types.UserContextKey))
+	if ctx.Value(types.UserContextKey) == nil {
+		return types.NewUserContext()
+	}
 	return ctx.Value(types.UserContextKey).(*types.UserContext)
 }
 

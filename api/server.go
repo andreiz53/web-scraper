@@ -31,7 +31,6 @@ func (s Server) Start() {
 	e.Use(s.IsLoggedIn)
 
 	e.GET("/", RenderIndex)
-	e.GET("/layout", RenderLayout)
 	e.GET("/login", RenderLogin)
 	e.GET("/register", RenderRegister)
 
@@ -39,7 +38,7 @@ func (s Server) Start() {
 	e.POST("/login", s.LoginUser)
 	e.POST("/website", s.CheckWebsite)
 
-	e.GET("/history", RenderHistory, s.RequireAuth)
+	e.GET("/history", s.RenderHistory, s.RequireAuth)
 
 	fmt.Println("Server listening at:", s.listenAddr)
 	e.Logger.Fatal(e.Start(s.listenAddr))

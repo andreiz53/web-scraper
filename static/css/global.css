@@ -101,3 +101,20 @@ input:focus-visible {
 .search-button {
     background-color:#ffffff14;
 }
+.website-container {
+    display:grid;
+    gap:20px;
+}
+.website-results-container {
+    padding:20px;
+    border: 1px solid rgb(188, 188, 188);
+    border-radius:8px;
+}
+.website-results-container > h2 {
+    margin-top:0;
+}
+.website-header {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}

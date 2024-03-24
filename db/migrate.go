@@ -10,5 +10,11 @@ func createMigrations(db *gorm.DB) error {
 	if err != nil {
 		return err
 	}
+
+	err = db.AutoMigrate(&types.Website{})
+	if err != nil {
+		return err
+	}
+
 	return nil
 }

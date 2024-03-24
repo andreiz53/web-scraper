@@ -10,8 +10,6 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-type contextKey string
-
 type ContextWithValue struct {
 	echo.Context
 }
@@ -30,8 +28,7 @@ func (ctx ContextWithValue) Get(key string) interface{} {
 	return ctx.Request().Context().Value(key)
 }
 func (ctx ContextWithValue) Set(key string, val interface{}) {
-	var newKey contextKey = contextKey(key)
-	ctx.SetRequest(ctx.Request().WithContext(context.WithValue(ctx.Request().Context(), newKey, val)))
+	ctx.SetRequest(ctx.Request().WithContext(context.WithValue(ctx.Request().Context(), key, val)))
 }
 
 func ParseToken(tokenStr string) *jwt.Token {

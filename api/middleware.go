@@ -42,7 +42,6 @@ func (s Server) IsLoggedIn(next echo.HandlerFunc) echo.HandlerFunc {
 		userSettings := types.NewUserContext()
 		cookie, err := ctx.Cookie("x-jwt-token")
 		if err != nil {
-			ctx.Request().Context()
 			ctx.Set(types.UserContextKey, userSettings)
 			return next(ctx)
 		}
@@ -59,12 +58,10 @@ func (s Server) IsLoggedIn(next echo.HandlerFunc) echo.HandlerFunc {
 				ctx.Set(types.UserContextKey, userSettings)
 				return next(ctx)
 			}
-
 			if user.ID == 0 {
 				ctx.Set(types.UserContextKey, userSettings)
 				return next(ctx)
 			}
-
 		}
 		userSettings.IsLoggedIn = true
 		ctx.Set(types.UserContextKey, userSettings)
