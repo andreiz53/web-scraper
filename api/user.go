@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"net/http"
 	"time"
 
@@ -9,7 +8,6 @@ import (
 	"github.com/andreiz53/web-scraper/utils"
 	partialsLogin "github.com/andreiz53/web-scraper/views/partials/login"
 	partialsRegister "github.com/andreiz53/web-scraper/views/partials/register"
-	partialsWebsite "github.com/andreiz53/web-scraper/views/partials/website"
 	"github.com/golang-jwt/jwt"
 	"github.com/labstack/echo/v4"
 	"golang.org/x/crypto/bcrypt"
@@ -68,20 +66,4 @@ func (s Server) LoginUser(ctx echo.Context) error {
 	ctx.Response().Header().Set("HX-Redirect", "/")
 
 	return utils.Render(ctx, http.StatusOK, partialsLogin.LoginSuccess())
-}
-
-func (s Server) CheckWebsite(ctx echo.Context) error {
-	website := ctx.FormValue("website")
-	if website == "" {
-		return echo.ErrBadRequest
-	}
-	scraper, err := NewScraper(website)
-	if err != nil {
-		return echo.ErrBadRequest
-	}
-	scraper.SetSEO()
-	scraper.Collector.Visit(scraper.URL)
-	fmt.Printf("SENDING DATA: %+v\n", scraper.Data.Robots)
-
-	return utils.Render(ctx, http.StatusOK, partialsWebsite.Website(scraper.Data))
 }

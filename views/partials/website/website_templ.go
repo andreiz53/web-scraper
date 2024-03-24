@@ -11,11 +11,11 @@ import "io"
 import "bytes"
 
 import (
-	"github.com/andreiz53/web-scraper/types"
+	"github.com/andreiz53/web-scraper/scraper"
 	"strconv"
 )
 
-func Website(data types.WebsiteData) templ.Component {
+func Website(data scraper.WebsiteData) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {

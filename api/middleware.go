@@ -1,10 +1,6 @@
 package api
 
 import (
-	"context"
-	"fmt"
-	"log"
-	"os"
 	"time"
 
 	"github.com/andreiz53/web-scraper/types"
@@ -19,7 +15,7 @@ func (s Server) RequireAuth(next echo.HandlerFunc) echo.HandlerFunc {
 			return ctx.String(401, "Unauthorized")
 		}
 
-		token := parseToken(cookie.Value)
+		token := ParseToken(cookie.Value)
 
 		if claims, ok := token.Claims.(jwt.MapClaims); ok {
 			if time.Now().Unix() > int64(claims["exp"].(float64)) {
@@ -41,27 +37,6 @@ func (s Server) RequireAuth(next echo.HandlerFunc) echo.HandlerFunc {
 
 }
 
-type contextWithValue struct {
-	echo.Context
-}
-
-func NewMiddlewareContextValue(fn echo.HandlerFunc) echo.HandlerFunc {
-	return func(ctx echo.Context) error {
-		return fn(contextWithValue{ctx})
-	}
-}
-
-func (ctx contextWithValue) Get(key string) interface{} {
-	val := ctx.Context.Get(key)
-	if val != nil {
-		return val
-	}
-	return ctx.Request().Context().Value(key)
-}
-func (ctx contextWithValue) Set(key string, val interface{}) {
-	ctx.SetRequest(ctx.Request().WithContext(context.WithValue(ctx.Request().Context(), key, val)))
-}
-
 func (s Server) IsLoggedIn(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(ctx echo.Context) error {
 		userSettings := types.NewUserContext()
@@ -72,7 +47,7 @@ func (s Server) IsLoggedIn(next echo.HandlerFunc) echo.HandlerFunc {
 			return next(ctx)
 		}
 
-		token := parseToken(cookie.Value)
+		token := ParseToken(cookie.Value)
 
 		if claims, ok := token.Claims.(jwt.MapClaims); ok {
 			if time.Now().Unix() > int64(claims["exp"].(float64)) {
@@ -95,28 +70,4 @@ func (s Server) IsLoggedIn(next echo.HandlerFunc) echo.HandlerFunc {
 		ctx.Set(types.UserContextKey, userSettings)
 		return next(ctx)
 	}
-}
-
-func parseToken(tokenStr string) *jwt.Token {
-	token, err := jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {
-		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
-		}
-
-		return []byte(os.Getenv("JWT_SECRET")), nil
-	})
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return token
-}
-
-func GenerateToken(claims jwt.Claims) (tokenStr string, err error) {
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	tokenStr, err = token.SignedString([]byte(os.Getenv("JWT_SECRET")))
-	if err != nil {
-		return "", err
-	}
-	return tokenStr, nil
 }
