@@ -1,0 +1,24 @@
+package pages
+
+import layout "github.com/andreiz53/web-scraper/views/layout"
+
+templ Login() {
+	@layout.Page("Login") {
+		<h1 class="text-center">Log into your account</h1>
+		<div class="flex justify-center my-8 ">
+			<form
+				class="flex max-w-xl w-full shadow"
+				hx-post="/login"
+				hx-target="#status"
+				hx-indicator="#loading"
+			>
+				<input class="form-input" type="email" name="email" id="email" placeholder="Your email address..."/>
+				<input class="form-input" type="password" name="password" id="password" placeholder="Your password..."/>
+				<button type="submit" class="cursor-pointer bg-blue-400 text-white b-0 m-0 px-8 font-semibold rounded-r">Login</button>
+			</form>
+		</div>
+		<h4 class="htmx-indicator text-center" id="loading">Loading...</h4>
+		<div id="status" class="max-w-3xl mx-auto"></div>
+	}
+	
+}

@@ -1,0 +1,3 @@
+run:
+	templ generate
+	air
