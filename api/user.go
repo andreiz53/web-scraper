@@ -58,13 +58,14 @@ func (s Server) LoginUser(ctx echo.Context) error {
 		return utils.Render(ctx, http.StatusInternalServerError, partialsLogin.LoginFail())
 	}
 
-	// ctx.Response().Header().Set("Authorization", tokenString)
 	cookie := new(http.Cookie)
 	cookie.Name = "x-jwt-token"
 	cookie.Value = tokenString
 	cookie.Expires = time.Now().Add(24 * time.Hour)
 	cookie.HttpOnly = true
 	ctx.SetCookie(cookie)
+
+	ctx.Response().Header().Set("HX-Redirect", "/")
 
 	return utils.Render(ctx, http.StatusOK, partialsLogin.LoginSuccess())
 }
