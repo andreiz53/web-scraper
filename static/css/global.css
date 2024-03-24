@@ -2,6 +2,11 @@
     --clr-blue: #3ea6ff;
 }
 
+html, body {
+    background-color: #212121;
+    color: #bcbcbc;
+}
+
 .result-item {
     background-color:rgba(255, 255, 255, 0.1);
     border-radius:.25rem;
@@ -58,12 +63,15 @@ input:focus-visible {
     background-color:orange
 }
 .form-input {
-    font-size:16px; 
+    font-size:14px; 
     width:100%;
     padding:8px 12px;
     font-weight:500;
-    border-radius:4px;
-    border:1px solid var(--clr-blue);
+    border-radius:32px;
+}
+.form-button{
+    padding-block:12px;
+    border-radius:32px;
 }
 #header {
     --size: 48px;
@@ -89,4 +97,7 @@ input:focus-visible {
 }
 #header nav li a:hover {
     background-color:rgba(255, 255, 255, 0.15);
+}
+.search-button {
+    background-color:#ffffff14;
 }
