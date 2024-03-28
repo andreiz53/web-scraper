@@ -7,7 +7,6 @@ import (
 
 	"github.com/andreiz53/web-scraper/scraper"
 	"github.com/andreiz53/web-scraper/types"
-	"github.com/andreiz53/web-scraper/utils"
 	partialsWebsite "github.com/andreiz53/web-scraper/views/partials/website"
 	"github.com/golang-jwt/jwt"
 	"github.com/labstack/echo/v4"
@@ -16,11 +15,11 @@ import (
 func (s Server) CheckWebsite(ctx echo.Context) error {
 	website := ctx.FormValue("website")
 	if website == "" {
-		return utils.Render(ctx, http.StatusOK, partialsWebsite.WebsiteFail())
+		return Render(ctx, http.StatusOK, partialsWebsite.WebsiteFail())
 	}
 	scr, err := scraper.NewScraper(website)
 	if err != nil {
-		return utils.Render(ctx, http.StatusOK, partialsWebsite.WebsiteFail())
+		return Render(ctx, http.StatusOK, partialsWebsite.WebsiteFail())
 	}
 	scr.SetSEO()
 	scr.Collector.Visit(scr.URL)
@@ -30,22 +29,22 @@ func (s Server) CheckWebsite(ctx echo.Context) error {
 	if userCtx.IsLoggedIn {
 		cookie, err := ctx.Cookie("x-jwt-token")
 		if err != nil {
-			return utils.Render(ctx, http.StatusOK, partialsWebsite.WebsiteFail())
+			return Render(ctx, http.StatusOK, partialsWebsite.WebsiteFail())
 		}
 
 		token := ParseToken(cookie.Value)
 
 		if claims, ok := token.Claims.(jwt.MapClaims); ok {
 			if time.Now().Unix() > int64(claims["exp"].(float64)) {
-				return utils.Render(ctx, http.StatusOK, partialsWebsite.WebsiteFail())
+				return Render(ctx, http.StatusOK, partialsWebsite.WebsiteFail())
 			}
 			user, err := s.Store.GetUserByEmail(claims["sub"].(string))
 			if err != nil {
-				return utils.Render(ctx, http.StatusOK, partialsWebsite.WebsiteFail())
+				return Render(ctx, http.StatusOK, partialsWebsite.WebsiteFail())
 			}
 
 			if user.ID == 0 {
-				return utils.Render(ctx, http.StatusOK, partialsWebsite.WebsiteFail())
+				return Render(ctx, http.StatusOK, partialsWebsite.WebsiteFail())
 			}
 
 			s.Store.CreateWebsite(&types.Website{
@@ -63,5 +62,5 @@ func (s Server) CheckWebsite(ctx echo.Context) error {
 			})
 		}
 	}
-	return utils.Render(ctx, http.StatusOK, partialsWebsite.Website(scr.Data))
+	return Render(ctx, http.StatusOK, partialsWebsite.Website(scr.Data))
 }

@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/andreiz53/web-scraper/types"
-	"github.com/andreiz53/web-scraper/utils"
 	partialsLogin "github.com/andreiz53/web-scraper/views/partials/login"
 	partialsRegister "github.com/andreiz53/web-scraper/views/partials/register"
 	"github.com/golang-jwt/jwt"
@@ -17,19 +16,19 @@ func (s Server) RegisterUser(ctx echo.Context) error {
 	email := ctx.FormValue("email")
 	password := ctx.FormValue("password")
 	if email == "" || password == "" {
-		return utils.Render(ctx, http.StatusBadRequest, partialsRegister.RegisterFail())
+		return Render(ctx, http.StatusBadRequest, partialsRegister.RegisterFail())
 	}
 	encryptedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
-		return utils.Render(ctx, http.StatusBadRequest, partialsRegister.RegisterFail())
+		return Render(ctx, http.StatusBadRequest, partialsRegister.RegisterFail())
 	}
 	user := types.NewUser(email, string(encryptedPassword))
 	err = s.Store.CreateUser(user)
 	if err != nil {
-		return utils.Render(ctx, http.StatusBadRequest, partialsRegister.RegisterFail())
+		return Render(ctx, http.StatusBadRequest, partialsRegister.RegisterFail())
 	}
 
-	return utils.Render(ctx, http.StatusOK, partialsRegister.RegisterSuccess())
+	return Render(ctx, http.StatusOK, partialsRegister.RegisterSuccess())
 }
 
 func (s Server) LoginUser(ctx echo.Context) error {
@@ -40,11 +39,11 @@ func (s Server) LoginUser(ctx echo.Context) error {
 	}
 	user, err := s.Store.GetUserByEmail(email)
 	if err != nil {
-		utils.Render(ctx, http.StatusUnauthorized, partialsLogin.LoginFail())
+		Render(ctx, http.StatusUnauthorized, partialsLogin.LoginFail())
 	}
 	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
 	if err != nil {
-		return utils.Render(ctx, http.StatusUnauthorized, partialsLogin.LoginFail())
+		return Render(ctx, http.StatusUnauthorized, partialsLogin.LoginFail())
 	}
 
 	claims := jwt.MapClaims{
@@ -53,7 +52,7 @@ func (s Server) LoginUser(ctx echo.Context) error {
 	}
 	tokenString, err := GenerateToken(claims)
 	if err != nil {
-		return utils.Render(ctx, http.StatusInternalServerError, partialsLogin.LoginFail())
+		return Render(ctx, http.StatusInternalServerError, partialsLogin.LoginFail())
 	}
 
 	cookie := new(http.Cookie)
@@ -65,5 +64,5 @@ func (s Server) LoginUser(ctx echo.Context) error {
 
 	ctx.Response().Header().Set("HX-Redirect", "/")
 
-	return utils.Render(ctx, http.StatusOK, partialsLogin.LoginSuccess())
+	return Render(ctx, http.StatusOK, partialsLogin.LoginSuccess())
 }
