@@ -36,6 +36,7 @@ func (s Server) Start() {
 
 	e.POST("/register", s.RegisterUser)
 	e.POST("/login", s.LoginUser)
+
 	e.POST("/website", s.CheckWebsite)
 
 	e.GET("/history", s.RenderHistory, s.RequireAuth)

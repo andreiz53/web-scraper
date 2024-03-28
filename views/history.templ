@@ -21,18 +21,18 @@ templ History(websites []types.Website) {
 			<h1>History</h1>
 			<p>Website visited in the past.</p>
 		</div>
-		<div class="websites-wrapper mt-4">
+		<div class="websites-wrapper">
 			if len(websites) <= 0 {
 				<p>No websites</p>
 			} else {
-				<div class="website-container max-w-2xl mx-auto">
+				<div class="website-container">
 					for _, website := range websites {
 						<div class="website-results-container">
 							<div class="website-header">
 								<h2>{website.URL}</h2>
 								<p class="website-date">{ renderDate(website.CreatedAt) }</p>
 							</div>
-							<ul class="grid gap-2 list-none pl-0">
+							<ul class="results-list">
 								<li class="result-item">
 									if website.Robots {
 										<div class="result-item-icon">
@@ -53,7 +53,7 @@ templ History(websites []types.Website) {
 										</div>
 										<div>
 											<p>Keywords found:</p>
-											<div class="flex items-center gap-2 flex-wrap mt-4">
+											<div class="result-item-list">
 												for _, keyword := range convertKeyWords(website.Keywords) {
 												<span class="result-item-label">{ keyword }</span>
 												}
@@ -73,7 +73,7 @@ templ History(websites []types.Website) {
 										</div>
 										<div>
 											<p>Description found:</p>
-											<h5 class="font-normal mb-0 mt-4 max-w-lg">{ website.Description }</h5>
+											<h5>{ website.Description }</h5>
 										</div>
 									} else {
 										<div class="result-item-icon">
@@ -90,7 +90,7 @@ templ History(websites []types.Website) {
 										<p>Found sitemap linked into your webpage.</p>
 									} else {
 										<p>Sitemap link not found.</p>
-										<h6 class="mb-2 mt-4">Add this to your page source</h6>
+										<h6 class="space-block">Add this to your page source</h6>
 										<code>link rel="alternate" type="application/rss+xml" href="https://yourdomain.com/sitemap.xml"</code>
 									}
 								</li>

@@ -39,8 +39,7 @@ func NewSqliteStorage() (*SqliteStorage, error) {
 }
 
 func openDatabase() (*gorm.DB, error) {
-	dsn := os.Getenv("DB_NAME") + fmt.Sprintf("?_pragma_key=%s&_pragma_cipher_page_size=4096", os.Getenv("DB_PASSWORD"))
-	db, err := gorm.Open(sqlite.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open(sqlite.Open(os.Getenv("DB_NAME")), &gorm.Config{})
 	if err != nil {
 		return nil, err
 	}

@@ -50,6 +50,12 @@ input:focus-visible {
     border:2px solid var(--clr-blue);
     outline:0;
 }
+.external-link-header {
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:16px;
+}
 .external-link-header a {
     color:rgba(255, 255, 255, 0.15)
 }
@@ -62,16 +68,16 @@ input:focus-visible {
 .result-item-label.orange {
     background-color:orange
 }
-.form-input {
-    font-size:14px; 
-    width:100%;
-    padding:8px 12px;
-    font-weight:500;
-    border-radius:32px;
-}
+
 .form-button{
     padding-block:12px;
     border-radius:32px;
+    background-color:rgb(96, 165, 250);
+    color: white;
+    border:0;
+    margin:0;
+    padding-inline:32px;
+    font-weight: 600;
 }
 #header {
     --size: 48px;
@@ -85,6 +91,7 @@ input:focus-visible {
     flex-direction: column;
     justify-content:center;
     background-color: transparent;
+    padding:16px;
 }
 #header nav li a {
     width:var(--size);
@@ -98,12 +105,22 @@ input:focus-visible {
 #header nav li a:hover {
     background-color:rgba(255, 255, 255, 0.15);
 }
+#content {
+    padding:8px;
+}
 .search-button {
     background-color:#ffffff14;
+    cursor:pointer;
+    border:0;
+    margin:0;
+    padding-inline:32px;
+    font-weight:600;
 }
 .website-container {
     display:grid;
     gap:20px;
+    max-width:670px;
+    margin-inline:auto;
 }
 .website-results-container {
     padding:20px;
@@ -117,4 +134,93 @@ input:focus-visible {
     display:flex;
     align-items:center;
     justify-content:space-between;
+}
+
+.nav-list {
+    list-style-type: none;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:flex-start;
+    gap:16px;
+    margin:0;
+    padding:0;
+}
+.nav-list-item {
+    text-decoration: none;
+}
+html, body {
+    margin:0;
+    padding:0;
+}
+body {
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+.results-list {
+    display:grid;
+    gap:8px;
+    list-style-type: none;
+    padding-left: 0;
+}
+.result-item-list {
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:16px;
+}
+h6.space-block {
+    margin-block: 16px 8px;
+}
+.external-links-list {
+    list-style-type: none;
+    padding-left:0;
+    display:grid;
+    gap:8px;
+}
+.external-links-item {
+    background-color:rgba(255,255,255,0.1);
+    padding:16px;
+    border-radius:4px;
+}
+.websites-wrapper {
+    margin-bottom:16px;
+}
+.text-center {
+    text-align:center;
+}
+.form-container {
+    display:flex;
+    justify-content: center;
+    margin-block:64px;
+}
+.form {
+    display:flex;
+    max-width: 576px;
+    width:100%;
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px;
+}
+.form-input {
+    font-size:14px; 
+    width:100%;
+    padding:8px 12px;
+    font-weight:500;
+    border-radius:32px;
+}
+.form-search {
+    padding-inline: 24px;
+    padding-block:16px;
+    margin:0;
+    font-weight:600;
+    width:100%;
+}
+.rounded-left {
+    border-radius:32px 0 0 32px;
+}
+.rounded-right {
+    border-radius: 0 32px 32px 0;
+}
+#status {
+    max-width:800px;
+    margin-inline:auto;
 }

@@ -6,9 +6,9 @@ templ Home() {
 	@layout.Page("Homepage") {
 				<h1 class="text-center">SEO Web Scraper</h1>
 				<p class="text-center">Enter your website and check your SEO vitals.</p>
-				<div class="flex justify-center my-8 ">
+				<div class="form-container ">
 					<form
-						class="flex max-w-xl w-full shadow"
+						class="form"
 						hx-post="/website"
 						hx-target="#results"
 						hx-indicator="#loading"
@@ -19,9 +19,9 @@ templ Home() {
 							id="website"
 							autocomplete="off"
 							placeholder="Enter your website's URL"
-							class="px-6 py-4 m-0 font-semibold rounded-l-8 w-full"
+							class="form-search rounded-left"
 						/>
-						<button type="submit" class="search-button cursor-pointer b-0 m-0 px-8 font-semibold rounded-r-8">
+						<button type="submit" class="search-button rounded-right">
 							<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="#888888" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14"/></svg>
 						</button>
 					</form>

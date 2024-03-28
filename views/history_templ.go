@@ -44,7 +44,7 @@ func History(websites []types.Website) templ.Component {
 				templ_7745c5c3_Buffer = templ.GetBuffer()
 				defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"text-center\"><h1>History</h1><p>Website visited in the past.</p></div><div class=\"websites-wrapper mt-4\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"text-center\"><h1>History</h1><p>Website visited in the past.</p></div><div class=\"websites-wrapper\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -54,7 +54,7 @@ func History(websites []types.Website) templ.Component {
 					return templ_7745c5c3_Err
 				}
 			} else {
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"website-container max-w-2xl mx-auto\">")
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"website-container\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -85,7 +85,7 @@ func History(websites []types.Website) templ.Component {
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
-					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div><ul class=\"grid gap-2 list-none pl-0\"><li class=\"result-item\">")
+					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div><ul class=\"results-list\"><li class=\"result-item\">")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
@@ -105,7 +105,7 @@ func History(websites []types.Website) templ.Component {
 						return templ_7745c5c3_Err
 					}
 					if len(website.Keywords) > 0 {
-						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"result-item-icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 24 24\"><path fill=\"#2cbc63\" d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z\"></path></svg></div><div><p>Keywords found:</p><div class=\"flex items-center gap-2 flex-wrap mt-4\">")
+						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"result-item-icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 24 24\"><path fill=\"#2cbc63\" d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z\"></path></svg></div><div><p>Keywords found:</p><div class=\"result-item-list\">")
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
@@ -143,14 +143,14 @@ func History(websites []types.Website) templ.Component {
 						return templ_7745c5c3_Err
 					}
 					if website.Description != "" {
-						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"result-item-icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 24 24\"><path fill=\"#2cbc63\" d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z\"></path></svg></div><div><p>Description found:</p><h5 class=\"font-normal mb-0 mt-4 max-w-lg\">")
+						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"result-item-icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 24 24\"><path fill=\"#2cbc63\" d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z\"></path></svg></div><div><p>Description found:</p><h5>")
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
 						var templ_7745c5c3_Var6 string
 						templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(website.Description)
 						if templ_7745c5c3_Err != nil {
-							return templ.Error{Err: templ_7745c5c3_Err, FileName: `views\history.templ`, Line: 75, Col: 75}
+							return templ.Error{Err: templ_7745c5c3_Err, FileName: `views\history.templ`, Line: 75, Col: 36}
 						}
 						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 						if templ_7745c5c3_Err != nil {
@@ -176,7 +176,7 @@ func History(websites []types.Website) templ.Component {
 							return templ_7745c5c3_Err
 						}
 					} else {
-						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<p>Sitemap link not found.</p><h6 class=\"mb-2 mt-4\">Add this to your page source</h6><code>link rel=\"alternate\" type=\"application/rss+xml\" href=\"https://yourdomain.com/sitemap.xml\"</code>")
+						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<p>Sitemap link not found.</p><h6 class=\"space-block\">Add this to your page source</h6><code>link rel=\"alternate\" type=\"application/rss+xml\" href=\"https://yourdomain.com/sitemap.xml\"</code>")
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}

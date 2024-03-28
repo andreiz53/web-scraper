@@ -31,7 +31,7 @@ func Register() templ.Component {
 				templ_7745c5c3_Buffer = templ.GetBuffer()
 				defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h1 class=\"text-center\">Register a new account</h1><div class=\"flex justify-center my-8 \"><form class=\"grid max-w-lg gap-2 w-full shadow\" hx-post=\"/register\" hx-target=\"#status\" hx-indicator=\"#loading\"><input class=\"form-input\" type=\"email\" name=\"email\" id=\"email\" placeholder=\"Your email address...\"> <input class=\"form-input\" type=\"password\" name=\"password\" id=\"password\" placeholder=\"Your password...\"> <button type=\"submit\" class=\"form-button cursor-pointer bg-blue-400 text-white b-0 m-0 px-8 font-semibold rounded-r\">Register</button></form></div><h4 class=\"htmx-indicator text-center\" id=\"loading\">Loading...</h4><div id=\"status\" class=\"max-w-3xl mx-auto\"></div>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h1 class=\"text-center\">Register a new account</h1><div class=\"form-container\"><form class=\"form\" hx-post=\"/register\" hx-target=\"#status\" hx-indicator=\"#loading\"><input class=\"form-input\" type=\"email\" name=\"email\" id=\"email\" placeholder=\"Your email address...\"> <input class=\"form-input\" type=\"password\" name=\"password\" id=\"password\" placeholder=\"Your password...\"> <button type=\"submit\" class=\"form-button\">Register</button></form></div><h4 class=\"htmx-indicator text-center\" id=\"loading\">Loading...</h4><div id=\"status\"></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

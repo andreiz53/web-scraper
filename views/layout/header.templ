@@ -2,26 +2,26 @@ package pages
 
 templ Header() {
     <nav>
-        <ul class="list-none flex flex-col items-center justify-start gap-4 m-0 p-0">
+        <ul class="nav-list">
             <li>
-                <a class="no-underline text-dark" href="/">
+                <a class="nav-list-item" href="/">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="#888888" d="M12 20q.45 0 .863-.05t.837-.15L12.5 18H9v-1l2-2h2v-3h-2l-1-1V9H7.8V7.275l2-2.95Q7.275 5.05 5.637 7.15T4 12h1v-2h4v2l-1 1v3H5.075q1.05 1.8 2.875 2.9T12 20m7.6-5.55q.2-.575.3-1.187T20 12q0-2.8-1.7-4.937T14 4.25V7l2 2v2h1.175zM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22"/></svg>
                 </a>
             </li>
             if UserSettings(ctx).IsLoggedIn {
                 <li>
-                    <a class="no-underline text-dark" href="/history">
+                    <a class="nav-list-item" href="/history">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="#888888" d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89l.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18m-1 5v5l4.28 2.54l.72-1.21l-3.5-2.08V8z"/></svg>
                     </a>
                 </li>
 			} else {
                 <li>
-                    <a class="no-underline text-dark" href="/login">
+                    <a class="nav-list-item" href="/login">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="#888888" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4m0 2c-2.67 0-8 1.34-8 4v1c0 .55.45 1 1 1h14c.55 0 1-.45 1-1v-1c0-2.66-5.33-4-8-4"/></svg>
                     </a>
                 </li>
                 <li>
-                <a class="no-underline text-dark" href="/register">
+                <a class="nav-list-item" href="/register">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><circle cx="9" cy="8" r="4" fill="#888888"/><path fill="#888888" d="M9 14c-2.67 0-8 1.34-8 4v1c0 .55.45 1 1 1h14c.55 0 1-.45 1-1v-1c0-2.66-5.33-4-8-4m11-4V7h-2v3h-3v2h3v3h2v-3h3v-2z"/></svg>
                 </a>
                 </li>

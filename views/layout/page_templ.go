@@ -11,12 +11,10 @@ import "io"
 import "bytes"
 
 import (
-	"fmt"
 	"github.com/andreiz53/web-scraper/types"
 )
 
 func UserSettings(ctx context.Context) *types.UserContext {
-	fmt.Println("INSIDE USER SETTINGS", ctx.Value(types.UserContextKey))
 	if ctx.Value(types.UserContextKey) == nil {
 		return types.NewUserContext()
 	}
@@ -36,20 +34,20 @@ func Page(title string) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<html lang=\"en\" class=\"m-0 p-0\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><script src=\"https://unpkg.com/htmx.org@1.9.10\" integrity=\"sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC\" crossorigin=\"anonymous\"></script><script src=\"https://cdn.jsdelivr.net/npm/@unocss/runtime\"></script><link rel=\"stylesheet\" href=\"/static/css/global.css\"><title>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><script src=\"https://unpkg.com/htmx.org@1.9.10\" integrity=\"sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC\" crossorigin=\"anonymous\"></script><link rel=\"stylesheet\" href=\"/static/css/global.css\"><title>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views\layout\page.templ`, Line: 23, Col: 17}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views\layout\page.templ`, Line: 20, Col: 17}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</title></head><body class=\"m-0 p-0 font-sans\"><div id=\"page-container\"><div id=\"header\" class=\"p-4 bg-light text-dark\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</title></head><body><div id=\"page-container\"><div id=\"header\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -57,7 +55,7 @@ func Page(title string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><div id=\"content\" class=\"p-2\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><div id=\"content\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

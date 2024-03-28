@@ -28,7 +28,7 @@ func Website(data scraper.WebsiteData) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div><h3>Website results</h3><ul class=\"grid gap-2 list-none pl-0\"><li class=\"result-item\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div><h3>Website results</h3><ul class=\"results-list\"><li class=\"result-item\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -48,7 +48,7 @@ func Website(data scraper.WebsiteData) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		if len(data.Keywords) > 0 {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"result-item-icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 24 24\"><path fill=\"#2cbc63\" d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z\"></path></svg></div><div><p>Keywords found:</p><div class=\"flex items-center gap-2 flex-wrap mt-4\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"result-item-icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 24 24\"><path fill=\"#2cbc63\" d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z\"></path></svg></div><div><p>Keywords found:</p><div class=\"result-item-list\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -86,14 +86,14 @@ func Website(data scraper.WebsiteData) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		if data.Description != "" {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"result-item-icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 24 24\"><path fill=\"#2cbc63\" d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z\"></path></svg></div><div><p>Description found:</p><h5 class=\"font-normal mb-0 mt-4 max-w-lg\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"result-item-icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 24 24\"><path fill=\"#2cbc63\" d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z\"></path></svg></div><div><p>Description found:</p><h5>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var3 string
 			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(data.Description)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views\partials\website\website.templ`, Line: 51, Col: 85}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views\partials\website\website.templ`, Line: 51, Col: 46}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
@@ -119,7 +119,7 @@ func Website(data scraper.WebsiteData) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		} else {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<p>Sitemap link not found.</p><h6 class=\"mb-2 mt-4\">Add this to your page source</h6><code>link rel=\"alternate\" type=\"application/rss+xml\" href=\"https://yourdomain.com/sitemap.xml\"</code>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<p>Sitemap link not found.</p><h6 class=\"space-block\">Add this to your page source</h6><code>link rel=\"alternate\" type=\"application/rss+xml\" href=\"https://yourdomain.com/sitemap.xml\"</code>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -212,12 +212,12 @@ func Website(data scraper.WebsiteData) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h2><ul class=\"list-none pl-0 grid gap-2\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h2><ul class=\"external-links-list\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		for _, link := range data.ExternalLinks {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<li class=\"bg-white bg-opacity-10 p-4 rounded shadow\"><div class=\"external-link-header mb-2 flex items-center gap-2 mb-4\"><a class=\"flex\" href=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<li class=\"external-links-item\"><div class=\"external-link-header\"><a class=\"flex\" href=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

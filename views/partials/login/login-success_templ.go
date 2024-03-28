@@ -23,7 +23,7 @@ func LoginSuccess() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h1>Great, login successful!</h1><a href=\"/\" class=\"text-slate-2\">Check your first website.</a>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h1>Great, login successful!</h1><a href=\"/\">Check your first website.</a>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
