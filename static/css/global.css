@@ -1,7 +1,9 @@
 :root {
     --clr-blue: #3ea6ff;
 }
-
+a {
+    color: #bcbcbc;
+}
 html, body {
     background-color: #212121;
     color: #bcbcbc;
@@ -194,6 +196,13 @@ h6.space-block {
     justify-content: center;
     margin-block:64px;
 }
+.form-user {
+    display:grid;
+    gap:8px;
+    max-width: 576px;
+    width:100%;
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px;
+}
 .form {
     display:flex;
     max-width: 576px;
@@ -221,6 +230,10 @@ h6.space-block {
     border-radius: 0 32px 32px 0;
 }
 #status {
+    max-width:800px;
+    margin-inline:auto;
+}
+#results {
     max-width:800px;
     margin-inline:auto;
 }

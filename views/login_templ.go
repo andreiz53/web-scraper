@@ -31,7 +31,7 @@ func Login() templ.Component {
 				templ_7745c5c3_Buffer = templ.GetBuffer()
 				defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h1 class=\"text-center\">Log into your account</h1><div class=\"form-container\"><form class=\"form\" hx-post=\"/login\" hx-target=\"#status\" hx-indicator=\"#loading\"><input class=\"form-input\" type=\"email\" name=\"email\" id=\"email\" placeholder=\"Your email address...\"> <input class=\"form-input\" type=\"password\" name=\"password\" id=\"password\" placeholder=\"Your password...\"> <button type=\"submit\" class=\"form-button\">Login</button></form></div><h4 class=\"htmx-indicator text-center\" id=\"loading\">Loading...</h4><div id=\"status\"></div>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h1 class=\"text-center\">Log into your account</h1><div class=\"form-container\"><form class=\"form-user\" hx-post=\"/login\" hx-target=\"#status\" hx-indicator=\"#loading\"><input class=\"form-input\" type=\"email\" name=\"email\" id=\"email\" placeholder=\"Your email address...\"> <input class=\"form-input\" type=\"password\" name=\"password\" id=\"password\" placeholder=\"Your password...\"> <button type=\"submit\" class=\"form-button\">Login</button></form></div><h4 class=\"htmx-indicator text-center\" id=\"loading\">Loading...</h4><div id=\"status\"></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
