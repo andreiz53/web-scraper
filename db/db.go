@@ -2,6 +2,7 @@ package db
 
 import (
 	"fmt"
+	"os"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -18,8 +19,8 @@ type SqliteStorage struct {
 	Db *gorm.DB
 }
 
-func NewSqliteStorage(filename string) (*SqliteStorage, error) {
-	db, err := openDatabase(filename)
+func NewSqliteStorage() (*SqliteStorage, error) {
+	db, err := openDatabase()
 	if err != nil {
 		return &SqliteStorage{}, err
 	}
@@ -37,8 +38,9 @@ func NewSqliteStorage(filename string) (*SqliteStorage, error) {
 	return &SqliteStorage{Db: db}, nil
 }
 
-func openDatabase(filename string) (*gorm.DB, error) {
-	db, err := gorm.Open(sqlite.Open(filename), &gorm.Config{})
+func openDatabase() (*gorm.DB, error) {
+	dsn := os.Getenv("DB_NAME") + fmt.Sprintf("?_pragma_key=%s&_pragma_cipher_page_size=4096", os.Getenv("DB_PASSWORD"))
+	db, err := gorm.Open(sqlite.Open(dsn), &gorm.Config{})
 	if err != nil {
 		return nil, err
 	}

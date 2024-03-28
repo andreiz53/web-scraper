@@ -17,7 +17,7 @@ func main() {
 	}
 	fmt.Println("Loaded environment file")
 
-	store, err := db.NewSqliteStorage(os.Getenv("DB_NAME"))
+	store, err := db.NewSqliteStorage()
 	if err != nil {
 		log.Fatal(err)
 	}
