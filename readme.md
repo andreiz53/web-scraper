@@ -1,5 +1,5 @@
 # SEO Web Scraper
-#### Video Demo:  TBD
+#### Video Demo:  https://www.youtube.com/watch?v=i9IgSZEVeIk
 #### Description:
 SEO Web scraper built in Go.
 Quickly look up your websites and check their SEO settings.
