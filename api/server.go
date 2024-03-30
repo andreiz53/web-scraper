@@ -27,7 +27,7 @@ func (s Server) Start() {
 	e.Static("/static/css", "./static/css")
 
 	e.Use(middleware.CORS())
-	e.Use(NewMiddlewareContextValue)
+	e.Use(WithContextValue)
 	e.Use(s.IsLoggedIn)
 
 	e.GET("/", RenderIndex)

@@ -21,7 +21,7 @@ type ContextWithValue struct {
 	echo.Context
 }
 
-func NewMiddlewareContextValue(fn echo.HandlerFunc) echo.HandlerFunc {
+func WithContextValue(fn echo.HandlerFunc) echo.HandlerFunc {
 	return func(ctx echo.Context) error {
 		return fn(ContextWithValue{ctx})
 	}

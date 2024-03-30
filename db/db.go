@@ -8,13 +8,6 @@ import (
 	"gorm.io/gorm"
 )
 
-// type Storage interface {
-// 	CreateUser(*types.User) error
-// 	GetUserByEmail(int) (*types.User, error)
-// 	UpdateUser(*types.User) error
-// 	DeleteUser(int) error
-// }
-
 type SqliteStorage struct {
 	Db *gorm.DB
 }

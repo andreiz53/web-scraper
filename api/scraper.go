@@ -24,7 +24,6 @@ func (s Server) CheckWebsite(ctx echo.Context) error {
 	scr.SetSEO()
 	scr.Collector.Visit(scr.URL)
 
-	// get the logged in user ID
 	userCtx := ctx.Get(types.UserContextKey).(*types.UserContext)
 	if userCtx.IsLoggedIn {
 		cookie, err := ctx.Cookie("x-jwt-token")
